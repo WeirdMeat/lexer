@@ -155,8 +155,9 @@ func goNextChar() bool {
 	return true
 }
 
-func Lexer(rr *bufio.Reader) {
+func Lexer(rr *bufio.Reader) []Token {
 	r = rr
+	res := make([]Token, 0)
 	for {
 		if goNextChar() == false {
 			break
@@ -165,6 +166,8 @@ func Lexer(rr *bufio.Reader) {
 			continue
 		}
 		token := tokenGet()
+		res = append(res, token)
 		fmt.Println(token)
 	}
+	return res
 }
